@@ -1,5 +1,5 @@
-const { timeStamp } = require("console")
-const mongoose = require("mongoose")
+// import { timestamp } from "console"
+import mongoose from "mongoose"
 
 // 1st step- create a schema
 const noteSchema = new mongoose.Schema({
@@ -14,4 +14,6 @@ const noteSchema = new mongoose.Schema({
 }, {timestamps: true}) // createdAt, time & date
 
 // 2nd step- create a model based off of that schema
-module.exports = mongoose.model("Note", noteSchema)
+const Note = mongoose.model("Note", noteSchema)
+
+export default Note

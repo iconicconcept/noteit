@@ -1,6 +1,6 @@
-const Note = require("../model/Note.js")
+import Note from "../model/Note.js"
 
-exports.getAllNotes = async (_, res)=>{
+export async function getAllNotes (_, res){
     try{
         const notes = await Note.find().sort({createdAt: -1}); // -1 will sort it in desc. order when created (newest first)
         res.status(200).json(notes)
@@ -9,9 +9,9 @@ exports.getAllNotes = async (_, res)=>{
         console.error("Error in getAllNotes controller", error)
         res.status(500).json({message: "Internal server error"})
     }
-}
+};
 
-exports.getNoteById = async (req, res) =>{
+export async function getNoteById(req, res){
     try{
         const note = await Note.findById(req.params.id);
         if(!note) return res.status(404).json({message: "Note not found!"})
@@ -24,7 +24,7 @@ exports.getNoteById = async (req, res) =>{
     }
 }
 
-exports.createNote = async (req, res)=>{
+export async function createNote (req, res){
     try{
         const {title, content} = req.body
         const note = new Note({title, content})
@@ -36,7 +36,7 @@ exports.createNote = async (req, res)=>{
     }
 }
 
-exports.updateNote = async (req, res)=>{
+export async function updateNote (req, res){
     try{
         const {title, content} = req.body
         const updatedNote = await Note.findByIdAndUpdate(req.params.id, {title, content}, {new: true}) // {new: true} (optional but best way is to include) is to make it update at once
@@ -48,7 +48,7 @@ exports.updateNote = async (req, res)=>{
     }
 }
 
-exports.deleteNote = async (req, res)=>{
+export async function deleteNote (req, res){
     try{
         const deletedNote = await Note.findByIdAndDelete(req.params.id)
         if(!deletedNote) return res.status(404).json({message: "Note not found"})

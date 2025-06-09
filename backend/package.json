@@ -4,9 +4,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "nodemon src/server.js"
+    "start": "node src/server.js"
   },
-  "type": "commonjs",
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "mern-2": "file:..",
     "mongoose": "^8.15.1",
     "upstash": "^0.0.1"
   },
